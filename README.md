@@ -2,7 +2,7 @@
 
 # Useful commands
 python -m venv pyvenv
-virtualenv -p python venv
+virtualenv -p="/c/Python39/" pyvenv
 
 flask run --host=0.0.0.0 --port=82
 
