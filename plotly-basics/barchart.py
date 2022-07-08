@@ -3,6 +3,8 @@ import plotly.graph_objs as go
 import pandas as pd
 
 
+chart_name = 'barchart'
+
 df = pd.read_csv('data/2018WinterOlympics.csv')
 # print(df.head())
 
@@ -31,4 +33,4 @@ data = [trace1, trace2, trace3]
 layout = go.Layout(title='Medals', barmode='stack')
 fig = go.Figure(data=data, layout=layout)
 
-pyo.plot(fig)
+pyo.plot(fig, filename=f'plots-results/{chart_name}.html')
