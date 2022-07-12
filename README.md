@@ -1,5 +1,8 @@
 # python-dash
 
+## Dash plotly
+https://dash.plotly.com/dash-core-components/rangeslider
+
 # Useful commands
 python -m venv pyvenv
 virtualenv -p="/c/Python39/" pyvenv
