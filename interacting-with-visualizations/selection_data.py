@@ -41,26 +41,21 @@ app.layout = html.Div([
         style={ 'width':'30%', 'float':'left' }
     ),
     html.Div(
-        html.Img(
-            id='hover-data',
-            src='children',
-            height=300
+        html.Pre(
+            id='selection',
+            style={ 'paddingTop':25 }
         ),
-        style={ 'paddingTop':35 }
+        style={ 'width':'30%', 'display':'inline-block', 'verticalAlign':'top' }
     )
 ])
 
 
 @app.callback(
-    Output(component_id='hover-data', component_property='src'),
-    [Input(component_id='wheels-plot', component_property='hoverData')] # also try component_property as 'clickData'
+    Output(component_id='selection', component_property='children'),
+    [Input(component_id='wheels-plot', component_property='selectedData')] # also try component_property as 'clickData'
 )
-def callback_image(hover_data):
-    wheel = hover_data['points'][0]['y']
-    color = hover_data['points'][0]['x']
-    path = 'images/'
-    return encode_image(path+df[(df['wheels']==wheel) & \
-                        (df['color']==color)]['image'].values[0])
+def callback_image(selected_data):
+    return json.dumps(selected_data, indent=2)
 
 
 if __name__ == '__main__':
