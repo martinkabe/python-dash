@@ -1,4 +1,4 @@
-from dash import Dash, html, dcc, Input, Output
+from dash import Dash, html, dcc, Input, Output, State
 import pandas as pd
 import plotly.express as px
 
@@ -35,6 +35,12 @@ app.layout = html.Div([
         },
         value='happiness_score'
     ),
+    html.Br(),
+    html.Button(
+        id='submit-button',
+        n_clicks=0,
+        children='Update the output'
+    ),
     dcc.Graph(
         id='happiness-graph'
     ),
@@ -55,10 +61,11 @@ def update_dropdown(selected_region):
 @app.callback(
     Output(component_id='happiness-graph',component_property='figure'),
     Output(component_id='average-div',component_property='children'),
-    [Input(component_id='country-dropdown',component_property='value'),
-    Input('data-radio','value')]
+    [Input('submit-button','n_clicks'),
+    State(component_id='country-dropdown',component_property='value'),
+    State('data-radio','value')]
 )
-def update_graph(selected_country, selected_data):
+def update_graph(button_click, selected_country, selected_data):
     filtered_happiness=happiness[happiness['country']==selected_country]
     line_fig=px.line(filtered_happiness,
                         x='year',
