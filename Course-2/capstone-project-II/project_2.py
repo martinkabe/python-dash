@@ -41,6 +41,7 @@ head_card=dbc.Row(
                 max=year_max,
                 value=[year_min, year_max],
                 marks={i:str(i) for i in range(year_min, year_max+1, 10)},
+                step=1,
                 tooltip={"placement": "top", "always_visible": True}
             ),
         ],
